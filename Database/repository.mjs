@@ -18,7 +18,7 @@ const insertData = async (data) => {
 };
 
 const getAll = async () => {
-  const result = await Bike.find();
+  const result = await Bike.find().sort({ power: 1 });
   return result;
 };
 
@@ -41,6 +41,15 @@ const updateInfo = async (_filter, _info) => {
   const result = await Bike.findOneAndUpdate(_filter, _info);
   console.log(result);
 };
+
+/*___________________________________Testing___________________________________*/
+const testFunction = async () => {
+  let result = await Bike.find({ power: { $lte: 20 } }).select("model");
+  // result = await getAll();
+  console.log(result);
+};
+testFunction();
+/*_____________________________________________________________________________*/
 
 export default {
   getAll,
