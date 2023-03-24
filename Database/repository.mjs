@@ -19,7 +19,6 @@ const insertData = async (data) => {
 
 const getAll = async () => {
   const result = await Bike.find();
-  console.log(result);
   return result;
 };
 
@@ -33,9 +32,21 @@ const getBikesWithCompany = async (_company) => {
   return result;
 };
 
+const deleteBike = async (_id) => {
+  const result = await Bike.findByIdAndDelete(_id);
+  console.log(result);
+};
+
+const updateInfo = async (_filter, _info) => {
+  const result = await Bike.findOneAndUpdate(_filter, _info);
+  console.log(result);
+};
+
 export default {
   getAll,
   getBikesWithCompany,
   getBikesWithModel,
   insertData,
+  deleteBike,
+  updateInfo,
 };
