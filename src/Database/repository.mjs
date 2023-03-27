@@ -42,7 +42,7 @@ const updateInfo = async (_filter, _info) => {
   console.log(result);
 };
 
-/*___________________________________Testing___________________________________*/
+/*___________________________________Testing___________________________________ /
 const testFunction = async () => {
   let result = await Bike.find({ power: { $lte: 20 } }).select("model");
   // result = await getAll();

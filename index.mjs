@@ -1,4 +1,4 @@
-import routes from "./Routes/routes.mjs";
+import routes from "./src/Routes/routes.mjs";
 import cors from "cors";
 import Express from "express";
 import dotenv from "dotenv";
