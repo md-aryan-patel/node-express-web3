@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Bikes from "../Database/repository.mjs";
+import url from "url";
 
 const routes = Router();
 
@@ -9,18 +10,6 @@ routes.get("/", (req, res) => {
 
 routes.get("/getall", (req, res) => {
   Bikes.getAll().then((result) => {
-    res.send(result);
-  });
-});
-
-routes.get("/model/:model", (req, res) => {
-  Bikes.getBikesWithModel(req.params.model).then((result) => {
-    res.send(result);
-  });
-});
-
-routes.get("/company/:company", (req, res) => {
-  Bikes.getBikesWithCompany(req.params.company).then((result) => {
     res.send(result);
   });
 });
@@ -41,6 +30,12 @@ routes.patch("/update", (req, res) => {
   const info = req.body[1];
   Bikes.updateInfo(filter, info);
   res.send("Updated...");
+});
+
+routes.get("/get", async (req, res) => {
+  const query = url.parse(req.url, true).query;
+  const result = await Bikes.get(query.key, query.value);
+  res.send(result);
 });
 
 export default routes;

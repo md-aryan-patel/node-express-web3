@@ -22,16 +22,6 @@ const getAll = async () => {
   return result;
 };
 
-const getBikesWithModel = async (_model) => {
-  const result = await Bike.findOne({ model: _model });
-  return result;
-};
-
-const getBikesWithCompany = async (_company) => {
-  const result = await Bike.find({ company: _company });
-  return result;
-};
-
 const deleteBike = async (_id) => {
   const result = await Bike.findByIdAndDelete(_id);
   console.log(result);
@@ -40,6 +30,11 @@ const deleteBike = async (_id) => {
 const updateInfo = async (_filter, _info) => {
   const result = await Bike.findOneAndUpdate(_filter, _info);
   console.log(result);
+};
+
+const get = async (_key, _value) => {
+  const result = await Bike.where(_key).equals(_value);
+  return result;
 };
 
 /*___________________________________Testing___________________________________ /
@@ -53,9 +48,8 @@ testFunction();
 
 export default {
   getAll,
-  getBikesWithCompany,
-  getBikesWithModel,
   insertData,
   deleteBike,
   updateInfo,
+  get,
 };
